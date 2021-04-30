@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_pengajuanFragment"
             app:destination="@id/pengajuanFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_welcomePageFragment"
+            app:destination="@id/welcomePageFragment" />
     </fragment>
     <fragment
         android:id="@+id/pengajuanFragment"
@@ -39,12 +42,20 @@
         android:id="@+id/welcomePageFragment"
         android:name="com.example.antrikom2.ui.login.WelcomePageFragment"
         android:label="fragment_welcome_page"
-        tools:layout="@layout/fragment_welcome_page" />
+        tools:layout="@layout/fragment_welcome_page" >
+        <action
+            android:id="@+id/action_welcomePageFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.antrikom2.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notifikasiFragment"
         android:name="com.example.antrikom2.ui.notif.NotifikasiFragment"

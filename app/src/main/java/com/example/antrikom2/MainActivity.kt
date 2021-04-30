@@ -2,6 +2,7 @@ package com.example.antrikom2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -26,11 +27,18 @@ class MainActivity : AppCompatActivity() {
 
         //Setup Navigation Slide
         navController = findNavController(R.id.nav_host_fragment)
-        drawerLayout = binding.drawerLayout
-        binding.navigationView.setupWithNavController(navController)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
-        setupActionBarWithNavController(navController, appBarConfiguration)
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.dashboardFragment || destination.id == R.id.pengajuanFragment || destination.id == R.id.antrianFragment) {
+                binding.navigationView.visibility = View.VISIBLE
+                drawerLayout = binding.drawerLayout
+                binding.navigationView.setupWithNavController(navController)
+                appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+                setupActionBarWithNavController(navController, appBarConfiguration)
+            }else{
+                binding.navigationView.visibility = View.GONE
+            }
+        }
 
 
     }
