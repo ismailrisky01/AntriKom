@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dashboardFragment"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/pengajuanFragment"
+            android:title="Pengajuan" />
+        <item
+            android:id="@+id/antrianFragment"
+            android:title="Antrian Saya" />
+    </group>
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.antrikom2.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_pengajuanFragment"
+            app:destination="@id/pengajuanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pengajuanFragment"
+        android:name="com.example.antrikom2.ui.pengajuan.PengajuanFragment"
+        android:label="fragment_pengajuan"
+        tools:layout="@layout/fragment_pengajuan" >
+        <action
+            android:id="@+id/action_pengajuanFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_pengajuanFragment_to_antrianFragment"
+            app:destination="@id/antrianFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/antrianFragment"
+        android:name="com.example.antrikom2.ui.antrian.AntrianFragment"
+        android:label="fragment_antrian"
+        tools:layout="@layout/fragment_antrian" >
+        <action
+            android:id="@+id/action_antrianFragment_to_notifikasiFragment"
+            app:destination="@id/notifikasiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomePageFragment"
+        android:name="com.example.antrikom2.ui.login.WelcomePageFragment"
+        android:label="fragment_welcome_page"
+        tools:layout="@layout/fragment_welcome_page" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.antrikom2.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/notifikasiFragment"
+        android:name="com.example.antrikom2.ui.notif.NotifikasiFragment"
+        android:label="fragment_notifikasi"
+        tools:layout="@layout/fragment_notifikasi" />
+</navigation>
