@@ -44,20 +44,21 @@ class MainActivity : AppCompatActivity() {
         binding.IDMainBtnLogout.setOnClickListener {
             val i = Intent(this,MainActivity::class.java)
             startActivity(i)
+
         }
 
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        navController.addOnDestinationChangedListener(listener)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        navController.addOnDestinationChangedListener(listener)
+//    }
 
-    override fun onPause() {
-        super.onPause()
-        navController.removeOnDestinationChangedListener(listener)
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        navController.removeOnDestinationChangedListener(listener)
+//    }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration)
