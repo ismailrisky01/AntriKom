@@ -28,7 +28,8 @@ lateinit var binding: FragmentWelcomePageBinding
         super.onViewCreated(view, savedInstanceState)
 
         binding.IDWelcomeBtnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomePageFragment_to_pengajuanFragment)
+            findNavController().navigate(R.id.action_welcomePageFragment_to_loginFragment)
         }
     }
+
 }

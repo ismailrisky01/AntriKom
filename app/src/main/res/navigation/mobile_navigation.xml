@@ -49,9 +49,6 @@
         <action
             android:id="@+id/action_welcomePageFragment_self"
             app:destination="@id/welcomePageFragment" />
-        <action
-            android:id="@+id/action_welcomePageFragment_to_pengajuanFragment"
-            app:destination="@id/pengajuanFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
