@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/background"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="10dp"
@@ -12,24 +12,40 @@
     android:paddingBottom="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Hallo"
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ID_Navheader_Imgfoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/boy"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
         android:paddingTop="10dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:contentDescription="Hallo"
+        app:civ_border_width="4dp"
+        app:civ_border_color="#FFFFFF"/>
+
 
     <TextView
+        android:id="@+id/ID_Navheader_Txtnama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
         android:paddingTop="10dp"
         android:text="Haiii"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#501705"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ID_Navheader_Txtwelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textColor="#1C1616" />
 </LinearLayout>
