@@ -19,11 +19,12 @@ class PengajuanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPengajuanBinding.inflate(inflater,container,false)
-        val languages = resources.getStringArray(R.array.list)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, languages)
+        val dataDropdown = resources.getStringArray(R.array.list)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, dataDropdown)
         binding.autoCompleteTextView2.setAdapter(arrayAdapter)
         // Inflate the layout for this fragment
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
