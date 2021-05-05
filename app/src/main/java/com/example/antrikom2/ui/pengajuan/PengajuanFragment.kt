@@ -56,8 +56,8 @@ class PengajuanFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         notificationManager = getActivity()?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         contentView = RemoteViews(context?.packageName, R.layout.fragment_notifikasi)
-        contentView.setTextViewText(R.id.notifTittle, "AntriKom")
-        contentView.setTextViewText(R.id.notifDesc, "Kamu berhasil mengambil antrian!")
+        contentView.setTextViewText(R.id.ID_Notif_txtNotifTittle, "AntriKom")
+        contentView.setTextViewText(R.id.ID_Notif_txtNotifDesc, "Kamu berhasil mengambil antrian!")
 
         val click = View.OnClickListener{
             val notificationIntent = Intent(context, ActivityMainBinding::class.java)
