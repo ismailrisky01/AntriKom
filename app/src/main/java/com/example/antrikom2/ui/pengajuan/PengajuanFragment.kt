@@ -42,7 +42,6 @@ class PengajuanFragment : Fragment() {
         binding.autoCompleteTextView2.setAdapter(arrayAdapter)
         // Inflate the layout for this fragment
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -78,7 +78,6 @@
                 android:backgroundTint="@color/button"
                 android:fontFamily="@font/poppins"
                 android:text="Log in"
-
                 android:textSize="18dp"
                 android:textStyle="bold"/>
 
