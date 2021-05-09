@@ -22,6 +22,14 @@ import com.example.antrikom2.MainActivity
 import com.example.antrikom2.R
 import com.example.antrikom2.databinding.ActivityMainBinding
 import com.example.antrikom2.databinding.FragmentPengajuanBinding
+import com.example.antrikom2.util.ModelAntrian
+import com.example.antrikom2.util.SharedPref
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PengajuanFragment : Fragment() {
     private var _binding: FragmentPengajuanBinding? = null
@@ -40,20 +48,54 @@ class PengajuanFragment : Fragment() {
         _binding = FragmentPengajuanBinding.inflate(inflater, container, false)
         val dataDropdown = resources.getStringArray(R.array.list)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, dataDropdown)
-        binding.autoCompleteTextView2.setAdapter(arrayAdapter)
+        binding.IDPengajuanEdtSubjek.setAdapter(arrayAdapter)
         // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val myPreference = SharedPref(requireContext())
+        binding.IDPengajuanEdtNIM.setText(myPreference.getData().NIM)
+        binding.IDPengajuanEdtName.setText(myPreference.getData().Nama)
+
         binding.IDPengajuanButtonAmbilAntrian.setOnClickListener {
-            findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment)
-            notif()
+            val date = SimpleDateFormat("ddMyyyy")
+            val currentDateNow = date.format(Date())
+            val sdf = SimpleDateFormat("dd-M-yyyy")
+            val time = sdf.format(Date())
+            var totalAntrian = 0
+
+            FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
+                .child(currentDateNow).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach {
+                            totalAntrian = totalAntrian + 1
+                        }
+                        uploadDataPengajuan(currentDateNow, time, totalAntrian + 1)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
         }
     }
 
 
+    fun uploadDataPengajuan(currentDate: String, time: String, antrian: Int) {
+        val nim = binding.IDPengajuanEdtNIM.text.toString()
+        val nama = binding.IDPengajuanEdtName.text.toString()
+        val subject = binding.IDPengajuanEdtSubjek.text.toString()
+        val modelAntrian = ModelAntrian("Aktif", nim, nama, subject, "P$antrian", time)
+
+        FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
+            .child(currentDate).push().setValue(modelAntrian).addOnSuccessListener {
+                findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment)
+                notif()
+            }
+
+    }
 
     fun notif() {
 
