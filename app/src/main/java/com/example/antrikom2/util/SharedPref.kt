@@ -3,50 +3,26 @@ package com.example.antrikom2.util
 import android.content.Context
 
 class SharedPref(context: Context) {
-    val USERNIM = "nim"
-    val USERNIM_KEY = "nim_data"
-
-
-    val PASSWORD ="password"
+    val IDShare = "Data"
+    val NIM_KEY = "nim_data"
     val PASSWORD_KEY = "password_data"
-
-    val NAMA ="nama"
     val NAMA_KEY = "nama_data"
 
+    val preference_id = context.getSharedPreferences(IDShare,Context.MODE_PRIVATE)
 
-    val preference_username = context.getSharedPreferences(USERNIM,Context.MODE_PRIVATE)
-
-    val preference_password = context.getSharedPreferences(PASSWORD,Context.MODE_PRIVATE)
-
-    val preference_nama = context.getSharedPreferences(NAMA,Context.MODE_PRIVATE)
-
-
-    fun getNIM():String?{
-        return preference_username.getString(USERNIM_KEY,"")
-    }
-
-    fun setNIM(dataInput:String){
-        val data= preference_username.edit()
-        data.putString(USERNIM_KEY, dataInput)
+    fun setData(modelAuth: ModelAuth){
+        val data= preference_id.edit()
+        data.putString(NIM_KEY, modelAuth.NIM)
+        data.putString(PASSWORD_KEY, modelAuth.PASSWORD)
+        data.putString(NAMA_KEY, modelAuth.Nama)
         data.apply()
     }
-
-    fun getPassword():String?{
-        return preference_password.getString(PASSWORD_KEY,"")
-    }
-    fun setPassword(dataInput:String){
-        val data= preference_password.edit()
-        data.putString(PASSWORD_KEY, dataInput)
-        data.apply()
-    }
-
-    fun getNama():String?{
-        return preference_nama.getString(NAMA_KEY,"")
-    }
-    fun setNama(dataInput:String){
-        val data= preference_nama.edit()
-        data.putString(NAMA_KEY, dataInput)
-        data.apply()
+    fun getData():ModelAuth{
+        val NIM = preference_id.getString(NIM_KEY,"").toString()
+        val PASSWORD = preference_id.getString(PASSWORD_KEY,"").toString()
+        val NAMA = preference_id.getString(NAMA_KEY,"").toString()
+        val data = ModelAuth(NIM,PASSWORD,NAMA)
+        return data
     }
 
 

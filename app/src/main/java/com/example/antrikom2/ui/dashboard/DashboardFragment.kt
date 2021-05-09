@@ -29,7 +29,7 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val myPreference = SharedPref(requireContext())
-        if (myPreference.getNIM() == "" && myPreference.getPassword() == "") {
+        if (myPreference.getData().NIM == "" && myPreference.getData().PASSWORD == "") {
             findNavController().navigate(R.id.action_dashboardFragment_to_welcomePageFragment)
         }
 

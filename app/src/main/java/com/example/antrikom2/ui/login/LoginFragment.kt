@@ -55,9 +55,8 @@ class LoginFragment : Fragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                     val myPreference = SharedPref(requireContext())
-                                    myPreference.setNIM(data.NIM)
-                                    myPreference.setPassword(data.PASSWORD)
-                                    myPreference.setNama(data.Nama)
+                                    val data = ModelAuth(data.NIM, data.PASSWORD, data.Nama)
+                                    myPreference.setData(data)
 
                                     val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).build()
                                     findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment,null,navOption)

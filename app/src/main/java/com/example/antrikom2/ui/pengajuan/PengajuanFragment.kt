@@ -39,7 +39,7 @@ class PengajuanFragment : Fragment() {
         _binding = FragmentPengajuanBinding.inflate(inflater,container,false)
         val dataDropdown = resources.getStringArray(R.array.list)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, dataDropdown)
-        binding.autoCompleteTextView2.setAdapter(arrayAdapter)
+        binding.IDPengajuanEditSubjek.setAdapter(arrayAdapter)
         // Inflate the layout for this fragment
         return binding.root
     }
