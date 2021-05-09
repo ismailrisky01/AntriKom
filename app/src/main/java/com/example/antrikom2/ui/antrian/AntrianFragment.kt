@@ -35,9 +35,9 @@ class AntrianFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val dataArray = ArrayList<ModelAntrian>()
         dataArray.add(ModelAntrian("Aktif","\t\n" +
-                "205150209111007", "Ismail","Proposal","F1","qwqw"))
+                "205150209111007", "Ismail","Proposal","F1","12-02-2021"))
         dataArray.add(ModelAntrian("Aktif","\t\n" +
-                "205150209111007", "Risky","Proposal","F2","qwqw"))
+                "205150209111007", "Risky","Proposal","F2","12-02-2021"))
 
 
         binding.IDAntrianRecyclerView.layoutManager = LinearLayoutManager(requireContext())

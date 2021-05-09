@@ -26,19 +26,20 @@
 
 
     <TextView
-        android:id="@+id/ID_Navheader_Txtnama"
+        android:id="@+id/ID_Navheader_TxtNama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:paddingTop="10dp"
         android:text="Haiii"
+
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#501705"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/ID_Navheader_Txtwelcome"
+        android:id="@+id/ID_Navheader_TxtNim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

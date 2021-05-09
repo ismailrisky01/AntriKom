@@ -1,5 +1,6 @@
 package com.example.antrikom2.ui.login
 
+import android.content.Intent
 import android.os.Binder
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.antrikom2.MainActivity
 import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentLoginBinding
 import com.example.antrikom2.util.ModelAuth
@@ -54,10 +56,10 @@ class LoginFragment : Fragment() {
                                         "Success Login",
                                         Toast.LENGTH_SHORT
                                     ).show()
+
                                     val myPreference = SharedPref(requireContext())
-                                    myPreference.setNIM(data.NIM)
-                                    myPreference.setPassword(data.PASSWORD)
-                                    myPreference.setNama(data.Nama)
+                                    val data = ModelAuth(data.NIM,data.PASSWORD,data.Nama)
+                                    myPreference.setData(data)
 
                                     val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).build()
                                     findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment,null,navOption)
