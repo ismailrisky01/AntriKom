@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    private lateinit var listener: NavController.OnDestinationChangedListener
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Setup ViewBinding
@@ -53,14 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-
         //Logout
         binding.IDMainBtnLogout.setOnClickListener {
             Logout()
-
         }
-
     }
 
 
@@ -79,7 +73,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
-    fun initSideBar(){
+
+    private fun initSideBar(){
         //Setting Header text atau Sidebar
         val myPrefrence = SharedPref(this)
         val header = binding.navigationView.getHeaderView(0)
@@ -88,5 +83,6 @@ class MainActivity : AppCompatActivity() {
         txtNimHeader.text = myPrefrence.getData().NIM
         txtNameHeader.text = myPrefrence.getData().Nama
     }
+
 
 }
