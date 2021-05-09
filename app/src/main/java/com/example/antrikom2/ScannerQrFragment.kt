@@ -1,6 +1,7 @@
 package com.example.antrikom2
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -10,9 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.antrikom2.databinding.FragmentScannerQrBinding
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
@@ -20,7 +22,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ScannerQrFragment : Fragment(), ZXingScannerView.ResultHandler {
-
     lateinit var binding: FragmentScannerQrBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,14 +72,14 @@ class ScannerQrFragment : Fragment(), ZXingScannerView.ResultHandler {
                 val date = SimpleDateFormat("ddMyyyy")
                 val currentDateNow = date.format(Date())
                 arguments?.let {
-
-                    FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDateNow).child(it.getString("keyAntrian").toString()).child("status").setValue("Selesai")
+                    FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
+                        .child(currentDateNow).child(it.getString("keyAntrian").toString()).child("status")
+                        .setValue("Selesai")
                 }
             }else{
                 Toast.makeText(requireContext(), "Qr Code Salah", Toast.LENGTH_SHORT).show()
             }
             onResume()
-
         }
     }
 

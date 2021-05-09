@@ -46,14 +46,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.IDMainBtnLogout.setOnClickListener {
+            Logout()
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
 
-        }
-
-        //Logout
-        binding.IDMainBtnLogout.setOnClickListener {
-            Logout()
         }
     }
 
