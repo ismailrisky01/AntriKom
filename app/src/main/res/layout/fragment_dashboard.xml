@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="merupakan rancangan aplikasi yang dapat digunakan untuk mempermudah sistem antrian pada bagian kemahasiswaan FILKOM UB. Rancangan ini diperuntukkan bagi mahasiswa yang membutuhkan nomor antrian sebagai pengajuan proposal ataupun LPJ."
+        android:text="Antrikom merupakan rancangan aplikasi yang dapat digunakan untuk mempermudah sistem antrian pada bagian kemahasiswaan FILKOM UB. Rancangan ini diperuntukkan bagi mahasiswa yang membutuhkan nomor antrian sebagai pengajuan proposal ataupun LPJ."
         android:textAlignment="center"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
