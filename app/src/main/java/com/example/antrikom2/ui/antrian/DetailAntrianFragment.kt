@@ -50,8 +50,6 @@ class DetailAntrianFragment : Fragment() {
                     }
                 })
         }
-
-
         binding.IDDetailAntrianBtnSelesai.setOnClickListener {
             findNavController().navigate(R.id.action_detailAntrianFragment_to_scannerQrFragment)
         }
