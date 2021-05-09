@@ -73,7 +73,7 @@
         tools:layout="@layout/fragment_notifikasi" />
     <fragment
         android:id="@+id/detailAntrianFragment"
-        android:name="com.example.antrikom2.DetailAntrianFragment"
+        android:name="com.example.antrikom2.ui.antrian.DetailAntrianFragment"
         android:label="fragment_detail_antrian"
         tools:layout="@layout/fragment_detail_antrian" >
         <action

@@ -36,13 +36,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
+        android:editable="false"
         android:id="@+id/ID_Pengajuan_EdtName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="92dp"
         android:background="@drawable/loginbuttonbg"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_TxtJudul"
@@ -71,7 +72,8 @@
         android:background="@drawable/loginbuttonbg"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="none"
+        android:editable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_EdtName" />
@@ -104,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_EdtNIM">
 
         <AutoCompleteTextView
-            android:id="@+id/ID_Pengajuan_EditSubjek"
+            android:id="@+id/ID_Pengajuan_EdtSubjek"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

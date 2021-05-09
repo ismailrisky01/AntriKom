@@ -19,10 +19,14 @@ class AntrianAdapter(val data: ArrayList<ModelAntrian>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-val datas = data[position]
+        val datas = data[position]
         binding.IDItemNomorAntrian.text = datas.nomorAntrian
         binding.IDItemNamaKegiatan.text = datas.jenisAntrian
         binding.IDItemNamaMahasiswa.text = datas.nama
+        binding.IDItemTanggal.text = datas.time
+        val posisi = position + 1
+        binding.IDItemWaktu.text = posisi.toString()
+
         holder.data(datas)
     }
 

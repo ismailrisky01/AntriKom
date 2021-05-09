@@ -32,6 +32,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:paddingTop="10dp"
         android:text="Haiii"
+
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#501705"

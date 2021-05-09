@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentAntrianBinding
 import com.example.antrikom2.util.ModelAntrian
+import com.example.antrikom2.util.SharedPref
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -34,14 +35,29 @@ class AntrianFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val dataArray = ArrayList<ModelAntrian>()
-        dataArray.add(ModelAntrian("Aktif","\t\n" +
-                "205150209111007", "Ismail","Proposal","F1","qwqw"))
-        dataArray.add(ModelAntrian("Aktif","\t\n" +
-                "205150209111007", "Risky","Proposal","F2","qwqw"))
-
-
+        val myPreference = SharedPref(requireContext())
+        val date = SimpleDateFormat("ddMyyyy")
+        val currentDateNow = date.format(Date())
         binding.IDAntrianRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.IDAntrianRecyclerView.adapter = AntrianAdapter(dataArray)
+        FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
+            .child(currentDateNow).orderByChild("nim").equalTo(myPreference.getData().NIM).addValueEventListener(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        dataArray.clear()
+                        snapshot.children.forEach {
+                            val modelAntrian = it.getValue(ModelAntrian::class.java) as ModelAntrian
+                            dataArray.add(modelAntrian)
+                        }
+
+                        binding.IDAntrianRecyclerView.adapter = AntrianAdapter(dataArray)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+
     }
 
 }
