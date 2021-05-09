@@ -43,9 +43,9 @@
         android:background="@drawable/loginbuttonbg"
         android:editable="false"
         android:ems="10"
-        android:fontFamily="@font/comfortaa"
+        android:fontFamily="@font/poppins_medium"
         android:inputType="none"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_TxtJudul"
@@ -75,9 +75,9 @@
         android:background="@drawable/loginbuttonbg"
         android:editable="false"
         android:ems="10"
-        android:fontFamily="@font/comfortaa"
+        android:fontFamily="@font/poppins_medium"
         android:inputType="none"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_EdtName" />
@@ -114,9 +114,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/comfortaa"
+            android:fontFamily="@font/poppins_medium"
             android:inputType="none"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

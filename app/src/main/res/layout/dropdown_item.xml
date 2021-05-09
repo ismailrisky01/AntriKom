@@ -1,9 +1,9 @@
-<TextView android:id="@+id/ID_Dropdown_TxtItem"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ID_Dropdown_TxtItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/comfortaa"
+    android:fontFamily="@font/poppins_medium"
     android:padding="14dp"
     android:text="List Subjek"
     android:textColor="@color/txt"
-    android:textSize="16sp"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:textSize="16sp" />

@@ -49,7 +49,7 @@
                 android:background="@drawable/loginbuttonbg"
                 android:fontFamily="@font/poppins"
                 android:hint="   NIM Mahasiswa"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/ID_Login_txtPassword"
@@ -70,7 +70,7 @@
                 android:fontFamily="@font/poppins"
                 android:hint="  **********"
                 android:inputType="textPassword"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/ID_Login_BtnLogin"
