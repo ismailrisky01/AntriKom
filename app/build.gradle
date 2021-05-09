@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.4'
     implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
