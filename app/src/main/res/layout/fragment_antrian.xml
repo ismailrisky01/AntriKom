@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/comfortaa"
+        android:fontFamily="@font/comfortaa_bold"
         android:text="Daftar Antrian Saya"
         android:textColor="#000000"
         android:textSize="25sp"
