@@ -24,7 +24,6 @@
         app:civ_border_width="4dp"
         app:civ_border_color="#FFFFFF"/>
 
-
     <TextView
         android:id="@+id/ID_Navheader_Txtnama"
         android:layout_width="match_parent"
@@ -38,7 +37,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/ID_Navheader_Txtwelcome"
+        android:id="@+id/ID_Navheader_TxtNIM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

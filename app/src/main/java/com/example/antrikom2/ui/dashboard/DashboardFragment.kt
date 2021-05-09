@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentDashboardBinding
 import com.example.antrikom2.util.SharedPref
@@ -29,7 +31,8 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val myPreference = SharedPref(requireContext())
-        if (myPreference.getNIM() == "" && myPreference.getPassword() == "") {
+        if (myPreference.getData().NIM == "" && myPreference.getData().PASSWORD == "") {
+            val navOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build()
             findNavController().navigate(R.id.action_dashboardFragment_to_welcomePageFragment)
         }
 
