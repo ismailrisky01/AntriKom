@@ -36,14 +36,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:editable="false"
         android:id="@+id/ID_Pengajuan_EdtName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="92dp"
         android:background="@drawable/loginbuttonbg"
+        android:editable="false"
         android:ems="10"
+        android:fontFamily="@font/poppins_medium"
         android:inputType="none"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_TxtJudul"
@@ -69,11 +71,13 @@
         android:id="@+id/ID_Pengajuan_EdtNIM"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/loginbuttonbg"
         android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="none"
+        android:background="@drawable/loginbuttonbg"
         android:editable="false"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="none"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Pengajuan_EdtName" />
@@ -110,7 +114,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:inputType="none" />
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="none"
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -119,8 +125,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="#2B331F"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="@font/poppins_medium"
         android:text="Ambil Antrian"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -22,11 +22,11 @@
 
             <TextView
                 android:id="@+id/ID_Login_txtLogin"
-                android:layout_marginTop="100sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="100sp"
                 android:fontFamily="@font/comfortaa"
-                android:text="Log in"
+                android:text="Login"
                 android:textColor="@color/txt"
                 android:textSize="50dp"
                 android:textStyle="bold" />
@@ -48,7 +48,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/loginbuttonbg"
                 android:fontFamily="@font/poppins"
-                android:hint="   NIM Mahasiswa" />
+                android:hint="   NIM Mahasiswa"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/ID_Login_txtPassword"
@@ -68,7 +69,8 @@
                 android:background="@drawable/loginbuttonbg"
                 android:fontFamily="@font/poppins"
                 android:hint="  **********"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/ID_Login_BtnLogin"
@@ -77,9 +79,10 @@
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/button"
                 android:fontFamily="@font/poppins"
-                android:text="Log in"
+                android:text="Login"
+                android:textAllCaps="false"
                 android:textSize="18dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>
