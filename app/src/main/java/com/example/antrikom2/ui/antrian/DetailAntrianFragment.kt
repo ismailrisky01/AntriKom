@@ -34,26 +34,53 @@ class DetailAntrianFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val date = SimpleDateFormat("ddMyyyy")
         val currentDateNow = date.format(Date())
-        arguments?.let {
+
+        arguments?.let {data->
             FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDateNow)
-                .orderByChild("nomorAntrian").equalTo(it.getString("nomorAntrian")).addValueEventListener(object :ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.children.forEach {
-                            val modeAntrian = it.getValue(ModelAntrian::class.java) as ModelAntrian
-                            binding.IDDetailAtrianTxtNoAntrian.text = modeAntrian.nomorAntrian
-                            binding.IDDetailAtrianTxtNama.text = modeAntrian.nama
+                .orderByChild("nomorAntrian").equalTo(data.getString("nomorAntrian")).addValueEventListener(
+                    object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            var key =""
+                            snapshot.children.forEach {
+                                val modeAntrian =
+                                    it.getValue(ModelAntrian::class.java) as ModelAntrian
+                                binding.IDDetailAtrianTxtNoAntrian.text = modeAntrian.nomorAntrian
+                                binding.IDDetailAtrianTxtNama.text = modeAntrian.nama
+
+                                key = it.key.toString()
+                            }
+                            binding.IDDetailAntrianBtnSelesai.setOnClickListener {
+                                Toast.makeText(requireContext(), "key = "+key, Toast.LENGTH_SHORT).show()
+                                val bundle = Bundle()
+                                bundle.putString("nomorAntrian", data.getString("nomorAntrian"))
+                                bundle.putString("keyAntrian", key)
+
+                                findNavController().navigate(
+                                    R.id.action_detailAntrianFragment_to_scannerQrFragment,
+                                    bundle
+                                )
+                            }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
+                        override fun onCancelled(error: DatabaseError) {
 
-                    }
-                })
+                        }
+                    })
+
         }
 
+        FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDateNow)
+            .orderByChild("status").equalTo("Aktif").addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach {
 
-        binding.IDDetailAntrianBtnSelesai.setOnClickListener {
-            findNavController().navigate(R.id.action_detailAntrianFragment_to_scannerQrFragment)
-        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+
     }
 }
