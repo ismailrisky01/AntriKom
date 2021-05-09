@@ -1,13 +1,11 @@
 package com.example.antrikom2.ui.antrian
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentAntrianBinding
 import com.example.antrikom2.util.ModelAntrian
 import com.example.antrikom2.util.SharedPref
@@ -26,7 +24,7 @@ class AntrianFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentAntrianBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -40,13 +38,16 @@ class AntrianFragment : Fragment() {
         val currentDateNow = date.format(Date())
         binding.IDAntrianRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
-            .child(currentDateNow).orderByChild("nim").equalTo(myPreference.getData().NIM).addValueEventListener(
+            .child(currentDateNow).orderByChild("status").equalTo("Aktif").addValueEventListener(
                 object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         dataArray.clear()
                         snapshot.children.forEach {
                             val modelAntrian = it.getValue(ModelAntrian::class.java) as ModelAntrian
-                            dataArray.add(modelAntrian)
+                            if(modelAntrian.nim == myPreference.getData().NIM){
+                                dataArray.add(modelAntrian)
+                            }
+
                         }
 
                         binding.IDAntrianRecyclerView.adapter = AntrianAdapter(dataArray)
