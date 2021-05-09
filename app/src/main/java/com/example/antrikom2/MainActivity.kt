@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    private lateinit var listener: NavController.OnDestinationChangedListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Setup ViewBinding
@@ -40,17 +39,24 @@ class MainActivity : AppCompatActivity() {
                 appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
                 setupActionBarWithNavController(navController, appBarConfiguration)
                 initSideBar()
-            }else{
+            } else {
+                initSideBar()
                 binding.navigationView.visibility = View.GONE
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }
+        binding.IDMainBtnLogout.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+
+        }
 
         //Logout
-        binding.IDMainBtnLogout.setOnClickListener{
+        binding.IDMainBtnLogout.setOnClickListener {
             Logout()
         }
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -58,23 +64,25 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    fun Logout(){
+    private fun Logout(){
         val myPreference = SharedPref(this)
-        val data = ModelAuth("", "", "")
+        val data = ModelAuth("","","")
         myPreference.setData(data)
         finish()
-
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
+
     }
 
-    fun initSideBar(){
+    private fun initSideBar(){
         //Setting Header text atau Sidebar
-        val myPreference = SharedPref(this)
+        val myPrefrence = SharedPref(this)
         val header = binding.navigationView.getHeaderView(0)
-        val txtNameHeader = header.findViewById<TextView>(R.id.ID_Navheader_Txtnama)
-        val txtNimHeader = header.findViewById<TextView>(R.id.ID_Navheader_TxtNIM)
-        txtNameHeader.text = myPreference.getData().Nama
-        txtNimHeader.text = myPreference.getData().NIM
+        val txtNameHeader = header.findViewById<TextView>(R.id.ID_Navheader_TxtNama)
+        val txtNimHeader = header.findViewById<TextView>(R.id.ID_Navheader_TxtNim)
+        txtNimHeader.text = myPrefrence.getData().NIM
+        txtNameHeader.text = myPrefrence.getData().Nama
     }
+
+
 }

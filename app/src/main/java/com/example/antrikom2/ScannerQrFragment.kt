@@ -4,13 +4,12 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
-import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentScannerQrBinding
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
@@ -57,19 +56,16 @@ class ScannerQrFragment : Fragment(), ZXingScannerView.ResultHandler {
         binding.qrCodeScanner.setResultHandler(this)
     }
 
-//    override fun handleResult(p0: Result?) {
-//        if (p0 != null) {
-//            Toast.makeText(requireContext(), p0.text, Toast.LENGTH_SHORT).show()
-//            onResume()
-//        }
-//    }
+    override fun handleResult(p0: Result?) {
+        if (p0 != null) {
+            Toast.makeText(requireContext(), p0.text, Toast.LENGTH_SHORT).show()
+            onResume()
+
+        }
+    }
 
     override fun onPause() {
         super.onPause()
         binding.qrCodeScanner.stopCamera()
-    }
-
-    override fun handleResult(p0: Result?) {
-        TODO("Not yet implemented")
     }
 }

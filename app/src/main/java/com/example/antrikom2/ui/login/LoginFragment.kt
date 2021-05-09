@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Binder
 import android.os.Bundle
 import android.util.Log
-import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+
 class LoginFragment : Fragment() {
+
     lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
@@ -57,20 +58,23 @@ class LoginFragment : Fragment() {
                                     ).show()
 
                                     val myPreference = SharedPref(requireContext())
-                                    val data = ModelAuth(data.NIM, data.PASSWORD, data.Nama)
+                                    val data = ModelAuth(data.NIM,data.PASSWORD,data.Nama)
                                     myPreference.setData(data)
 
                                     val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).build()
                                     findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment,null,navOption)
-
                                 } else {
                                     Toast.makeText(requireContext(), "Password Salah", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
+
                         override fun onCancelled(error: DatabaseError) {
+
                         }
                     })
+
         }
     }
+
 }

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
+import com.example.antrikom2.MainActivity
 import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentDashboardBinding
 import com.example.antrikom2.util.SharedPref
@@ -27,14 +27,20 @@ class DashboardFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val myPreference = SharedPref(requireContext())
         if (myPreference.getData().NIM == "" && myPreference.getData().PASSWORD == "") {
-            val navOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build()
-            findNavController().navigate(R.id.action_dashboardFragment_to_welcomePageFragment)
+            val navOption = NavOptions.Builder().setPopUpTo(R.id.loginFragment,true).build()
+            findNavController().navigate(R.id.action_dashboardFragment_to_welcomePageFragment,null,navOption)
         }
+
 
         binding.IDDashboardImg.setOnClickListener {
 

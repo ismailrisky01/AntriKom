@@ -36,23 +36,28 @@ class AntrianFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val dataArray = ArrayList<ModelAntrian>()
         val myPreference = SharedPref(requireContext())
-
-        val date = SimpleDateFormat("ddMyyy")
+        val date = SimpleDateFormat("ddMyyyy")
         val currentDateNow = date.format(Date())
         binding.IDAntrianRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
-            .child(currentDateNow).orderByChild("nim").equalTo(myPreference.getData().NIM).orderByChild("status")
-            .equalTo("Aktif").addValueEventListener(
-                object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
+            .child(currentDateNow).orderByChild("nim").equalTo(myPreference.getData().NIM).addValueEventListener(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        dataArray.clear()
+                        snapshot.children.forEach {
+                            val modelAntrian = it.getValue(ModelAntrian::class.java) as ModelAntrian
+                            dataArray.add(modelAntrian)
+                        }
 
-                }
+                        binding.IDAntrianRecyclerView.adapter = AntrianAdapter(dataArray)
+                    }
 
-                override fun onCancelled(error: DatabaseError) {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-            })
+                    }
+                })
+
+
     }
 
 }
