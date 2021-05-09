@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -12,6 +13,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.antrikom2.databinding.ActivityMainBinding
+import com.example.antrikom2.util.ModelAuth
+import com.example.antrikom2.util.SharedPref
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     private lateinit var listener: NavController.OnDestinationChangedListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Setup ViewBinding
@@ -36,32 +40,53 @@ class MainActivity : AppCompatActivity() {
                 binding.navigationView.setupWithNavController(navController)
                 appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
                 setupActionBarWithNavController(navController, appBarConfiguration)
-            }else{
+                initSideBar()
+            } else {
+                initSideBar()
                 binding.navigationView.visibility = View.GONE
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }
         binding.IDMainBtnLogout.setOnClickListener {
-            val i = Intent(this,MainActivity::class.java)
+            val i = Intent(this, MainActivity::class.java)
             startActivity(i)
 
         }
 
 
+
+        //Logout
+        binding.IDMainBtnLogout.setOnClickListener {
+            Logout()
+
+        }
+
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        navController.addOnDestinationChangedListener(listener)
-//    }
 
-//    override fun onPause() {
-//        super.onPause()
-//        navController.removeOnDestinationChangedListener(listener)
-//    }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    private fun Logout(){
+        val myPreference = SharedPref(this)
+        val data = ModelAuth("","","")
+        myPreference.setData(data)
+        finish()
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+
+    }
+    fun initSideBar(){
+        //Setting Header text atau Sidebar
+        val myPrefrence = SharedPref(this)
+        val header = binding.navigationView.getHeaderView(0)
+        val txtNameHeader = header.findViewById<TextView>(R.id.ID_Navheader_TxtNama)
+        val txtNimHeader = header.findViewById<TextView>(R.id.ID_Navheader_TxtNim)
+        txtNimHeader.text = myPrefrence.getData().NIM
+        txtNameHeader.text = myPrefrence.getData().Nama
+    }
+
 }
