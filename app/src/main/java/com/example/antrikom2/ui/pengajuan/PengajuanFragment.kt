@@ -94,6 +94,7 @@ class PengajuanFragment : Fragment() {
                 .child(currentDate).push().setValue(modelAntrian).addOnSuccessListener {
                     findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment)
                     notif()
+
                 }
         } else {
             Toast.makeText(context, "Masukkan subject ", Toast.LENGTH_SHORT).show()
