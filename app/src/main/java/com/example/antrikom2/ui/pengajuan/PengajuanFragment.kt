@@ -16,6 +16,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RemoteViews
 import androidx.navigation.NavOptions
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.example.antrikom2.MainActivity
 import com.example.antrikom2.R
@@ -85,16 +87,21 @@ class PengajuanFragment : Fragment() {
         val nim = binding.IDPengajuanEdtNIM.text.toString()
         val nama = binding.IDPengajuanEdtName.text.toString()
         val subject = binding.IDPengajuanEdtSubjek.text.toString()
-        val ref =  FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
+
+        if (subject.isNotEmpty()) {
+            val ref =  FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
             .child(currentDate).push()
         val modelAntrian = ModelAntrian(ref.key.toString(),"Aktif", nim, nama, subject, "P$antrian", time)
-
        ref.setValue(modelAntrian).addOnSuccessListener {
                 val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).setExitAnim(R.anim.fragment_close_exit).build()
                 findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment,null,navOption)
 
                 notif()
             }
+        } else {
+            Toast.makeText(context, "Masukkan subject ", Toast.LENGTH_SHORT).show()
+        }
+
 
     }
 

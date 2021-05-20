@@ -8,6 +8,7 @@
     android:background="@drawable/backgroud_gradient"
     tools:context=".ui.antrian.DetailAntrianFragment">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -53,6 +54,9 @@
                 android:id="@+id/ID_DetailAntrian_BatalAntrian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:Radius="15dp"
+
                 android:backgroundTint="@color/red"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Batal\n Antrian"
@@ -113,6 +117,42 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button" />
+
+            <TextView
+                android:id="@+id/Antri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Antrian Saya"
+                android:textColor="#0B0606"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ID_DetailAntrian_AntrianSaatIni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Antrian saat ini :"
+                android:textColor="#070606"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ID_DetailAtrian_txtNama" />
+
+            <TextView
+                android:id="@+id/ID_DetailAntrian_AntrianSkr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="P003"
+                android:textColor="#2B331F"
+                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/ID_DetailAntrian_AntrianSaatIni"
                 app:layout_constraintTop_toBottomOf="@+id/ID_DetailAtrian_txtNama" />
         </androidx.constraintlayout.widget.ConstraintLayout>
