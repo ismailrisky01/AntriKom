@@ -1,11 +1,15 @@
 package com.example.antrikom2.ui.antrian
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentAntrianBinding
 import com.example.antrikom2.util.ModelAntrian
 import com.example.antrikom2.util.SharedPref
@@ -21,6 +25,13 @@ import kotlin.collections.ArrayList
 class AntrianFragment : Fragment() {
     private var _binding: FragmentAntrianBinding? = null
     private val binding get() = _binding!!
+    var dataArray = ArrayList<ModelAntrian>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        backHandler()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +58,6 @@ class AntrianFragment : Fragment() {
                             if(modelAntrian.nim == myPreference.getData().NIM){
                                 dataArray.add(modelAntrian)
                             }
-
                         }
 
                         binding.IDAntrianRecyclerView.adapter = AntrianAdapter(dataArray)
@@ -57,8 +67,18 @@ class AntrianFragment : Fragment() {
 
                     }
                 })
+    }
 
 
+
+    fun backHandler() {
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    findNavController().navigate(R.id.action_antrianFragment_to_dashboardFragment)
+                }
+            }
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
 }

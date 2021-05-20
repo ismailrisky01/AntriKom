@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,12 +15,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RemoteViews
+import androidx.navigation.NavOptions
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.example.antrikom2.MainActivity
 import com.example.antrikom2.R
-import com.example.antrikom2.databinding.ActivityMainBinding
 import com.example.antrikom2.databinding.FragmentPengajuanBinding
 import com.example.antrikom2.util.ModelAntrian
 import com.example.antrikom2.util.SharedPref
@@ -35,9 +34,9 @@ import java.util.*
 class PengajuanFragment : Fragment() {
     private var _binding: FragmentPengajuanBinding? = null
     private val binding get() = _binding!!
-    lateinit var notificationManager: NotificationManager
+    private lateinit var notificationManager: NotificationManager
     lateinit var notificationChannel: NotificationChannel
-    lateinit var builder: Notification.Builder
+    private lateinit var builder: Notification.Builder
     lateinit var contentView: RemoteViews
     private val appID = "ID"
     private val desc = "Desc"
@@ -45,7 +44,7 @@ class PengajuanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPengajuanBinding.inflate(inflater, container, false)
         val dataDropdown = resources.getStringArray(R.array.list)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, dataDropdown)
@@ -88,13 +87,17 @@ class PengajuanFragment : Fragment() {
         val nim = binding.IDPengajuanEdtNIM.text.toString()
         val nama = binding.IDPengajuanEdtName.text.toString()
         val subject = binding.IDPengajuanEdtSubjek.text.toString()
+
         if (subject.isNotEmpty()) {
-            val modelAntrian = ModelAntrian("Aktif", nim, nama, subject, "P$antrian", time)
-            FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
-                .child(currentDate).push().setValue(modelAntrian).addOnSuccessListener {
-                    findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment)
-                    notif()
-                }
+            val ref =  FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
+            .child(currentDate).push()
+        val modelAntrian = ModelAntrian(ref.key.toString(),"Aktif", nim, nama, subject, "P$antrian", time)
+       ref.setValue(modelAntrian).addOnSuccessListener {
+                val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).setExitAnim(R.anim.fragment_close_exit).build()
+                findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment,null,navOption)
+
+                notif()
+            }
         } else {
             Toast.makeText(context, "Masukkan subject ", Toast.LENGTH_SHORT).show()
         }
