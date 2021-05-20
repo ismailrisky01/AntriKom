@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.antrikom2.R
 import com.example.antrikom2.databinding.ItemAntrianBinding
 import com.example.antrikom2.util.ModelAntrian
-import com.example.antrikom2.util.MyDiffUtil
 
 class AntrianAdapter(val data:ArrayList<ModelAntrian>) :
     RecyclerView.Adapter<AntrianAdapter.ViewHolder>() {
