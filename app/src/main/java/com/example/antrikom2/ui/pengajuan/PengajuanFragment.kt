@@ -89,12 +89,12 @@ class PengajuanFragment : Fragment() {
         val subject = binding.IDPengajuanEdtSubjek.text.toString()
 
         if (subject.isNotEmpty()) {
-            val ref =  FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
-            .child(currentDate).push()
-        val modelAntrian = ModelAntrian(ref.key.toString(),"Aktif", nim, nama, subject, "P$antrian", time)
-       ref.setValue(modelAntrian).addOnSuccessListener {
-                val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).setExitAnim(R.anim.fragment_close_exit).build()
-                findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment,null,navOption)
+            val ref =
+                FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDate).push()
+            val modelAntrian = ModelAntrian(ref.key.toString(), "Aktif", nim, nama, subject, "P$antrian", time)
+            ref.setValue(modelAntrian).addOnSuccessListener {
+                val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment, true).setExitAnim(R.anim.fragment_close_exit).build()
+                findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment, null, navOption)
 
                 notif()
             }
