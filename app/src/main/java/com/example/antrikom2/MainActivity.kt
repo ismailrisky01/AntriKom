@@ -1,10 +1,12 @@
 package com.example.antrikom2
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -15,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.antrikom2.databinding.ActivityMainBinding
 import com.example.antrikom2.util.ModelAuth
 import com.example.antrikom2.util.SharedPref
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -27,7 +30,9 @@ class MainActivity : AppCompatActivity() {
         //Setup ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val colorDrawable = ColorDrawable(Color.parseColor("#FDDCA5"))
+        supportActionBar?.setBackgroundDrawable(colorDrawable)
+        supportActionBar?.setTitle("AntriKom")
         //Setup Navigation Slide
         navController = findNavController(R.id.nav_host_fragment)
 

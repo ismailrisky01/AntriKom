@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_antrianFragment_to_detailAntrianFragment"
             app:destination="@id/detailAntrianFragment" />
+        <action
+            android:id="@+id/action_antrianFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomePageFragment"
@@ -84,5 +87,12 @@
         android:id="@+id/scannerQrFragment"
         android:name="com.example.antrikom2.ScannerQrFragment"
         android:label="fragment_scanner_qr"
-        tools:layout="@layout/fragment_scanner_qr" />
+        tools:layout="@layout/fragment_scanner_qr" >
+        <action
+            android:id="@+id/action_scannerQrFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_scannerQrFragment_to_antrianFragment"
+            app:destination="@id/antrianFragment" />
+    </fragment>
 </navigation>
