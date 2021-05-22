@@ -1,4 +1,4 @@
-package com.example.antrikom2
+package com.example.antrikom2.ui.antrian.detailAntrian
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,9 +12,9 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentScannerQrBinding
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
@@ -74,7 +74,8 @@ class ScannerQrFragment : Fragment(), ZXingScannerView.ResultHandler {
                 val currentDateNow = date.format(Date())
                 arguments?.let {
 
-                    FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDateNow).child(it.getString("idAntrian").toString()).child("status").setValue("Selesai").addOnSuccessListener {
+                    FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDateNow)
+                        .child(it.getString("idAntrian").toString()).child("status").setValue("Selesai").addOnSuccessListener {
                         val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment,true).build()
                         findNavController().navigate(R.id.action_scannerQrFragment_to_antrianFragment,null,navOption)
                     }

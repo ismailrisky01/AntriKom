@@ -13,8 +13,6 @@ import com.example.antrikom2.util.ModelAntrian
 class AntrianAdapter(val data:ArrayList<ModelAntrian>) :
     RecyclerView.Adapter<AntrianAdapter.ViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAntrianBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

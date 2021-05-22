@@ -24,6 +24,7 @@ import com.example.antrikom2.R
 import com.example.antrikom2.databinding.FragmentPengajuanBinding
 import com.example.antrikom2.util.ModelAntrian
 import com.example.antrikom2.util.SharedPref
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -87,22 +88,18 @@ class PengajuanFragment : Fragment() {
         val nim = binding.IDPengajuanEdtNIM.text.toString()
         val nama = binding.IDPengajuanEdtName.text.toString()
         val subject = binding.IDPengajuanEdtSubjek.text.toString()
-
         if (subject.isNotEmpty()) {
-            val ref =
-                FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDate).push()
+            val ref = FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian").child(currentDate).push()
             val modelAntrian = ModelAntrian(ref.key.toString(), "Aktif", nim, nama, subject, "P$antrian", time)
             ref.setValue(modelAntrian).addOnSuccessListener {
                 val navOption = NavOptions.Builder().setPopUpTo(R.id.dashboardFragment, true).setExitAnim(R.anim.fragment_close_exit).build()
-                findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment, null, navOption)
+                findNavController().navigate(R.id.action_pengajuanFragment_to_antrianFragment)
 
                 notif()
             }
         } else {
             Toast.makeText(context, "Masukkan subject ", Toast.LENGTH_SHORT).show()
         }
-
-
     }
 
     fun notif() {
