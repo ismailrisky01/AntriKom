@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.antrikom2.ui.dashboard.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_pengajuanFragment"
@@ -20,23 +20,24 @@
     <fragment
         android:id="@+id/pengajuanFragment"
         android:name="com.example.antrikom2.ui.pengajuan.PengajuanFragment"
-        android:label="fragment_pengajuan"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_pengajuan" >
         <action
             android:id="@+id/action_pengajuanFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
         <action
             android:id="@+id/action_pengajuanFragment_to_antrianFragment"
-            app:destination="@id/antrianFragment" />
+            app:destination="@id/antrianFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/antrianFragment"
         android:name="com.example.antrikom2.ui.antrian.AntrianFragment"
-        android:label="fragment_antrian"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_antrian" >
-        <action
-            android:id="@+id/action_antrianFragment_to_notifikasiFragment"
-            app:destination="@id/notifikasiFragment" />
         <action
             android:id="@+id/action_antrianFragment_to_detailAntrianFragment"
             app:destination="@id/detailAntrianFragment" />
@@ -47,7 +48,7 @@
     <fragment
         android:id="@+id/welcomePageFragment"
         android:name="com.example.antrikom2.ui.login.WelcomePageFragment"
-        android:label="fragment_welcome_page"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_welcome_page" >
         <action
             android:id="@+id/action_welcomePageFragment_to_loginFragment"
@@ -63,30 +64,30 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.antrikom2.ui.login.LoginFragment"
-        android:label="fragment_login"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/mobile_navigation" />
     </fragment>
     <fragment
-        android:id="@+id/notifikasiFragment"
-        android:name="com.example.antrikom2.ui.notif.NotifikasiFragment"
-        android:label="fragment_notifikasi"
-        tools:layout="@layout/fragment_notifikasi" />
-    <fragment
         android:id="@+id/detailAntrianFragment"
-        android:name="com.example.antrikom2.ui.antrian.DetailAntrianFragment"
-        android:label="fragment_detail_antrian"
+        android:name="com.example.antrikom2.ui.antrian.detailAntrian.DetailAntrianFragment"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_detail_antrian" >
         <action
             android:id="@+id/action_detailAntrianFragment_to_scannerQrFragment"
             app:destination="@id/scannerQrFragment" />
+        <action
+            android:id="@+id/action_detailAntrianFragment_to_antrianFragment"
+            app:destination="@id/antrianFragment"
+            app:popUpTo="@id/mobile_navigation" />
     </fragment>
     <fragment
         android:id="@+id/scannerQrFragment"
-        android:name="com.example.antrikom2.ScannerQrFragment"
-        android:label="fragment_scanner_qr"
+        android:name="com.example.antrikom2.ui.antrian.detailAntrian.ScannerQrFragment"
+        android:label="Antrikom"
         tools:layout="@layout/fragment_scanner_qr" >
         <action
             android:id="@+id/action_scannerQrFragment_to_dashboardFragment"
