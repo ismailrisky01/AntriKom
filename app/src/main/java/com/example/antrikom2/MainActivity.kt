@@ -30,15 +30,18 @@ class MainActivity : AppCompatActivity() {
         //Setup ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val colorDrawable = ColorDrawable(Color.parseColor("#FDDCA5"))
-        supportActionBar?.setBackgroundDrawable(colorDrawable)
-        supportActionBar?.setTitle("AntriKom")
-        //Setup Navigation Slide
-        navController = findNavController(R.id.nav_host_fragment)
 
+        //Set warna dan teks pada action bar
+        val colorDrawable = ColorDrawable(Color.parseColor("#FDDCA5"))
+        supportActionBar?.setBackgroundDrawable(colorDrawable) // warna diset sesuai val colorDrawable
+        supportActionBar?.setTitle("AntriKom") //Teks action bar bertuliskan AntriKom
+
+        //Set Navigation Slide
+        navController = findNavController(R.id.nav_host_fragment)
+        //Set destinasi navigation
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.dashboardFragment || destination.id == R.id.pengajuanFragment || destination.id == R.id.antrianFragment) {
-                binding.navigationView.visibility = View.VISIBLE
+                binding.navigationView.visibility = View.VISIBLE //navigationnya muncul
                 drawerLayout = binding.drawerLayout
                 binding.navigationView.setupWithNavController(navController)
                 appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
@@ -46,28 +49,25 @@ class MainActivity : AppCompatActivity() {
                 initSideBar()
             } else {
                 initSideBar()
-                binding.navigationView.visibility = View.GONE
+                binding.navigationView.visibility = View.GONE //navigationnya tidak muncul
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }
-        binding.IDMainBtnLogout.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
 
-        }
-
-        //Logout
+        //action button logout
         binding.IDMainBtnLogout.setOnClickListener {
             Logout()
         }
     }
 
+    //method untuk menampilkan navbar
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
 
+    //method logout
     private fun Logout(){
         val myPreference = SharedPref(this)
         val data = ModelAuth("","","")
@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
         finish()
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
-
     }
 
     private fun initSideBar(){

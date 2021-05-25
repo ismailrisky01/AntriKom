@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="20dp"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment"
-    android:background="@drawable/background_gradient">
+    android:background="@drawable/background_gradient"
+    android:padding="20dp"
+    tools:context=".ui.login.LoginFragment">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,15 +42,17 @@
                 android:textColor="@color/txt"
                 android:textSize="18dp" />
 
-            <EditText
-                android:id="@+id/ID_Login_Input_NIM"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/loginbuttonbg"
-                android:fontFamily="@font/poppins"
-                android:hint="   NIM Mahasiswa"
-                android:textSize="16sp" />
+                        <EditText
+                            android:paddingLeft="5dp"
+                            android:id="@+id/ID_Login_Input_NIM"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/loginbuttonbg"
+                            android:fontFamily="@font/poppins"
+                            android:hint="   NIM Mahasiswa"
+                            android:textSize="16sp" />
+
 
             <TextView
                 android:id="@+id/ID_Login_txtPassword"
@@ -68,8 +71,9 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/loginbuttonbg"
                 android:fontFamily="@font/poppins"
-                android:hint="  **********"
+                android:hint="Password Mahasiswa"
                 android:inputType="textPassword"
+                android:paddingLeft="10dp"
                 android:textSize="16sp" />
 
             <Button

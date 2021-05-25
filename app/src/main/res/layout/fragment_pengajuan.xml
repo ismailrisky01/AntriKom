@@ -36,6 +36,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
+        android:paddingLeft="5dp"
         android:id="@+id/ID_Pengajuan_EdtName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -68,6 +69,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
+        android:paddingLeft="5dp"
         android:id="@+id/ID_Pengajuan_EdtNIM"
         android:layout_width="match_parent"
         android:layout_height="50dp"

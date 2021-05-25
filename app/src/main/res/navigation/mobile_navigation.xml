@@ -21,7 +21,7 @@
         android:id="@+id/pengajuanFragment"
         android:name="com.example.antrikom2.ui.pengajuan.PengajuanFragment"
         android:label="Antrikom"
-        tools:layout="@layout/fragment_pengajuan" >
+        tools:layout="@layout/fragment_pengajuan">
         <action
             android:id="@+id/action_pengajuanFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
@@ -29,9 +29,11 @@
             android:id="@+id/action_pengajuanFragment_to_antrianFragment"
             app:destination="@id/antrianFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popUpTo="@id/mobile_navigation"
-            app:popUpToInclusive="false" />
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_pengajuanFragment_to_antrianFragment2"
+            app:destination="@id/antrianFragment"
+            app:popUpTo="@id/mobile_navigation" />
     </fragment>
     <fragment
         android:id="@+id/antrianFragment"
@@ -55,7 +57,12 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_welcomePageFragment_to_loginFragment2"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_in"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_welcomePageFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
@@ -69,6 +76,9 @@
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@android:anim/fade_in"
             app:popUpTo="@id/mobile_navigation" />
     </fragment>
     <fragment
@@ -94,6 +104,7 @@
             app:destination="@id/dashboardFragment" />
         <action
             android:id="@+id/action_scannerQrFragment_to_antrianFragment"
-            app:destination="@id/antrianFragment" />
+            app:destination="@id/antrianFragment"
+            app:popUpTo="@id/mobile_navigation" />
     </fragment>
 </navigation>

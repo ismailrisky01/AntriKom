@@ -74,7 +74,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button" />
+                app:layout_constraintStart_toEndOf="@+id/ID_DetailAntrian_BtnBatal" />
 
             <TextView
                 android:id="@+id/Antri"
@@ -92,11 +92,12 @@
                 android:id="@+id/ID_DetailAntrian_AntrianSaatIni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Antrian saat ini :"
+                android:text="Jumlah Antrian sebelum anda :"
                 android:textColor="#070606"
+                app:layout_constraintEnd_toStartOf="@+id/ID_DetailAntrian_AntrianSkr"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ID_DetailAtrian_txtNama" />
 
@@ -110,6 +111,8 @@
                 android:text="P003"
                 android:textColor="#2B331F"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ID_DetailAntrian_AntrianSaatIni"
                 app:layout_constraintTop_toBottomOf="@+id/ID_DetailAtrian_txtNama" />
         </androidx.constraintlayout.widget.ConstraintLayout>
