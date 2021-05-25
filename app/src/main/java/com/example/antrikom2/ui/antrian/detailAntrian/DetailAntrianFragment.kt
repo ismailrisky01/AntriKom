@@ -20,12 +20,13 @@ import java.util.*
 
 
 class DetailAntrianFragment : Fragment() {
-    lateinit var binding: FragmentDetailAntrianBinding
+    lateinit var binding: FragmentDetailAntrianBinding  // deklarasi view binding
+    // 2 lifecycle frag yaitu oncreateview dan onviewcreated
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+// membuat inflate di fragment
         binding = FragmentDetailAntrianBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -33,67 +34,67 @@ class DetailAntrianFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val date = SimpleDateFormat("ddMyyyy")
-        val currentDateNow = date.format(Date()) // Tanggal Hari Ini
+        val currentDateNow = date.format(Date())
 
+// mengambil argument di antrian adapter
         arguments?.let { data ->
-            nomorUrut(
-                data.getString("nomorAntrian").toString(),
-                currentDateNow
-            ) //Fungsi Menentukan Nomor Urut
+            nomorUrut(data.getString("nomorAntrian").toString(), currentDateNow)
             binding.IDDetailAtrianTxtNoAntrian.text = data.getString("nomorAntrian")
             binding.IDDetailAtrianTxtNama.text = data.getString("namaAntrian")
-
-            //Button Selesai
             binding.IDDetailAntrianBtnSelesai.setOnClickListener {
-
+                //deklarasiin bundle buat nyimpen
                 val bundle = Bundle()
                 bundle.putString("nomorAntrian", data.getString("nomorAntrian"))
                 bundle.putString("idAntrian", data.getString("idAntrian"))
-
                 findNavController().navigate(
                     R.id.action_detailAntrianFragment_to_scannerQrFragment,
                     bundle
                 )
             }
-
-            // Button Batal
+            // setup buat button batal
             binding.IDDetailAntrianBtnBatal.setOnClickListener {
                 MaterialAlertDialogBuilder(requireContext()).setIcon(R.drawable.logo)
                     .setMessage(resources.getString(R.string.teks_konfirmasi))
-                    .setNegativeButton(resources.getString(R.string.tidak)) { dialog, which ->
-
+                    // buat kalo tidak dia ga bakal ngelakuin apa apa
+                    .setNegativeButton(resources.getString(R.string.tidak)){
+                            dialog, which ->
                     }
-                    .setPositiveButton(resources.getString(R.string.ya)) { dialog, which ->
-                        val idAntrian = data.getString("idAntrian")
+                    // kalo iya dia bakalan ngubah value
+                    .setPositiveButton(resources.getString(R.string.ya)){
+                            dialog, which -> val idAntrian = data.getString("idAntrian")
                         FirebaseDatabase.getInstance().reference
-                            .child("SistemAntrian/Antrian/$currentDateNow/$idAntrian/status")
-                            .setValue("Batal")
-                            .addOnSuccessListener {
-                                findNavController().navigate(R.id.action_detailAntrianFragment_to_antrianFragment)
-                            }
+                            .child("SistemAntrian/Antrian/$currentDateNow/$idAntrian/status").setValue("Batal")
+                            .addOnSuccessListener { findNavController().navigate(R.id.action_detailAntrianFragment_to_antrianFragment) }
                     }.show()
             }
         }
+
+
     }
 
+    // fungsi nomer urut
     fun nomorUrut(antrian: String, date: String) {
+        // tempat firebasenya dimana jadi dia hitung klo yang equal aktif aja
         FirebaseDatabase.getInstance().reference.child("SistemAntrian").child("Antrian")
             .child(date).orderByChild("status").equalTo("Aktif")
-            .addValueEventListener(object : ValueEventListener {
-                var totalAntrian = 0
+            .addValueEventListener(object : ValueEventListener {// add value itu realtime
+            var totalAntrian = 0
 
+                //perubahan datanya
                 override fun onDataChange(snapshot: DataSnapshot) {
                     totalAntrian = 0
+                    // akan nambah 1 tiap childrennya
                     for (data in snapshot.children) {
                         totalAntrian += 1
+                        //ambil value dari model antrian (nama, nim, dll)
                         val user = data.getValue(ModelAntrian::class.java) as ModelAntrian
                         if (user.nomorAntrian == antrian) {
                             break
                         }
                     }
+                    //jadiin string no berapa antriannya
                     totalAntrian -= 1
-                    binding.IDDetailAntrianAntrianSkr.text =
-                        totalAntrian.toString()
+                    binding.IDDetailAntrianAntrianSkr.text = totalAntrian.toString()
                     Log.d("DetailAntrian", totalAntrian.toString())
                 }
 

@@ -15,8 +15,9 @@ import com.example.antrikom2.util.SharedPref
 
 
 class DashboardFragment : Fragment() {
-    lateinit var binding: FragmentDashboardBinding
+    lateinit var binding: FragmentDashboardBinding //Deklarasi View Banding Dari Fragment Dashboard
 
+    //Setting Banding Untuk Mengakses View Xml
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,20 +26,18 @@ class DashboardFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDashboardBinding.inflate(layoutInflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle("AntriKom")
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Mengecek Data Login Apakah Sudah Sesuai Dengan Di Shardpref
         val myPreference = SharedPref(requireContext())
         if (myPreference.getData().NIM == "" && myPreference.getData().PASSWORD == "") {
+
+            //Setting Navigation Dari Layout LoginFragment
             val navOption = NavOptions.Builder().setPopUpTo(R.id.loginFragment,true).build()
             findNavController().navigate(R.id.action_dashboardFragment_to_welcomePageFragment,null,navOption)
         }

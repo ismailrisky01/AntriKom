@@ -23,6 +23,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ID_Antrian_RecyclerView"
+        tools:listitem="@layout/item_antrian"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
@@ -30,4 +31,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ID_Antrian_txtJudul" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
